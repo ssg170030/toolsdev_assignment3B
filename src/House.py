@@ -5,36 +5,28 @@ from pymel.core.system import Path
 
 log = logging.getLogger(__name__)
 
+
 class PolyHouse(object):
 
-
-    def __index__(self, x = '', y= '', w= '' , h= ''):
-
-        self.x = 10
-        self.y =10
-        self.w=10
-        self.h=10
+    def __init__(self, x=1, y=1, w=1, h=''):
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = 10
 
     @property
     def x(self):
-        print('getting')
-        self.x = mc
+        self.x = x
         return
 
-    @property
     def y(self):
-        print('getting')
-        self.y = mc
-        return
+        self.y = 1
 
-    @property
     def w(self):
-        print('getting')
-        self.x = mc
-        return
+        self.w = 1
 
-    @property
-    def h(self):
-        print('getting')
-        self.x = mc
-        return
+    @x.setter
+    def x(self, value):
+        self._x = value
+
+
