@@ -19,10 +19,10 @@ class low_poly_city_ui(QtWidgets.QDialog):
         super(low_poly_city_ui, self).__init__(parent=maya_main_window())
         self.scene = House.PolyHouse()
         self.setWindowTitle("Low Poly Buildings")
-
+        self.resize(600, 300)
         self.setWindowFlags(self.windowFlags() ^
                             QtCore.Qt.WindowContextHelpButtonHint)
-        self.resize(500, 200)
+
         self.display_widgets()
         self.window_layout()
         self.create_connections()
@@ -37,6 +37,7 @@ class low_poly_city_ui(QtWidgets.QDialog):
         self.building_widget()
         self.size_widget()
         self.house_button()
+        self.office_building_button()
 
     def title_widget(self):
         self.title_lbl = QtWidgets.QLabel("LowPoly Buildings")
@@ -71,7 +72,23 @@ class low_poly_city_ui(QtWidgets.QDialog):
         self.building_layout.addWidget(self.x_lbl)
         self.building_layout.addWidget(self.x_spinbox)
         self.main_layout.addLayout(self.building_layout)
-        self.setLayout(self.main_layout)
+        #self.setLayout(self.main_layout)
+
+
+    def office_building_button(self):
+        self.office_building_lbl = QtWidgets.QLabel()
+        self.office_building_lbl.setPixmap(QtGui.QPixmap('building_image.png'))
+        self.office_building_btn = QtWidgets.QPushButton()
+        self.office_building_btn.setIcon(QtGui.QIcon("building_image.png"))
+        self.office_building_btn.setIconSize(QtCore.QSize(32, 32))
+
+    def office_building_lay(self):
+        self.office_lay = QtWidgets.QVBoxLayout()
+        self.office_lay.addWidget(self.office_building_lbl)
+        self.office_lay.addWidget(self.office_building_btn)
+        self.main_layout.addLayout(self.office_lay)
+
+
 
 
     def house_button(self):
@@ -81,7 +98,7 @@ class low_poly_city_ui(QtWidgets.QDialog):
         self.house_btn.setIcon(QtGui.QIcon("house_image.png"))
         self.house_btn.setIconSize(QtCore.QSize(32, 32))
 
-    def house_buttons_lay(self):
+    def house_lay(self):
         self.house_buttons_lay = QtWidgets.QVBoxLayout()
         self.house_buttons_lay.addWidget(self.house_lbl)
         self.house_buttons_lay.addWidget(self.house_btn)
@@ -96,12 +113,11 @@ class low_poly_city_ui(QtWidgets.QDialog):
         self.main_layout.addWidget(self.title_lbl)
         self.building_layout()
         self.size_layout()
-        self.house_buttons_lay()
+        self.house_lay()
+        self.office_building_lay()
 
 
 
-    #def create_buttons(self):
-     #   self.
 
     def create_connections(self):
         self.y_cmb.currentIndexChanged.connect(self.update_connections)

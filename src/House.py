@@ -1,12 +1,17 @@
 import logging
-import maya.cmds  as mc
+import maya.cmds as mc
 import pymel.core as pmc
-from pymel.core.system import Path
+
 
 log = logging.getLogger(__name__)
 
 
 class PolyHouse(object):
+
+    def makeObject(self):
+        mc.polyCube()
+        pmc.polyCone()
+
 
     def __init__(self, x=1, y=1, w=1, h=''):
         self.x = x
@@ -16,7 +21,7 @@ class PolyHouse(object):
 
     @property
     def x(self):
-        self.x = x
+        self.x = mc.polyCube
         return
 
     def y(self):
