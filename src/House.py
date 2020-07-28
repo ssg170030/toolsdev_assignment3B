@@ -1,37 +1,37 @@
-import logging
-import maya.cmds as mc
-import pymel.core as pmc
+import sys
 
+import logging
+import pymel.core as pm
 
 log = logging.getLogger(__name__)
+sys.setrecursionlimit(10 * 6)
+
+    #"""arguments are considered to be numbers"""
 
 
 class PolyHouse(object):
 
-    def makeObject(self):
-        mc.polyCube()
-        pmc.polyCone()
+    def __init__(self, foundation=1,roof_2=1, door_2=1):
+        self.bricks = foundation
+        self.roof = roof_2
+        self.door = door_2
+        #self.create_procedural_scene(xPosition, yPosition, zPosition)
+    def create_procedural_scene(self, bricks=1, roof=1, door=1):
+        self.bricks = pm.polyCube()
+        self.roof = pm.polyCone()
+        self.door = pm.Cube()
 
+        xform = bricks[1]
+        xform.translateZ.set(0)
+        xform = roof[1]
+        xform.translateY.set(1.0)
+        xform = door[1]
+        shape = xform.getShape()
+        shape.longName()
+        shape.name()
+        shape.numEdges()
+        shape.numVertices()
+        xform.translateY.get()
 
-    def __init__(self, x=1, y=1, w=1, h=''):
-        self.x = x
-        self.y = y
-        self.w = w
-        self.h = 10
-
-    @property
-    def x(self):
-        self.x = mc.polyCube
-        return
-
-    def y(self):
-        self.y = 1
-
-    def w(self):
-        self.w = 1
-
-    @x.setter
-    def x(self, value):
-        self._x = value
 
 

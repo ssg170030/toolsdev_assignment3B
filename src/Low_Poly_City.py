@@ -1,9 +1,12 @@
 import maya.OpenMayaUI as omui
 from PySide2 import QtWidgets, QtGui, QtCore
+from PySide2.QtWidgets import QPushButton
 
 from shiboken2 import wrapInstance
 
 import House
+
+
 
 
 def maya_main_window():
@@ -26,11 +29,11 @@ class low_poly_city_ui(QtWidgets.QDialog):
         self.display_widgets()
         self.window_layout()
         self.create_connections()
+        self.populate_ui()
 
 
 
-
-        #self.cmd = 'polyCone'
+        #self.cmd = 'polyCone's
 
     def display_widgets(self):
         self.title_widget()
@@ -45,46 +48,47 @@ class low_poly_city_ui(QtWidgets.QDialog):
 
 
     def size_widget(self):
-        self.y_lbl = QtWidgets.QLabel("size")
-        self.y_cmb = QtWidgets.QComboBox()
-        self.y_cmb.addItems("5")
-        self.y_cmb.addItems(['5', '10', '15', '20', '25'])
-        self.y_lbl.setStyleSheet("font: bold 20 px")
+        self.size_lbl = QtWidgets.QLabel("size")
+        self.size_lbl.setStyleSheet("font: bold 20 px")
+        self.size_cmb = QtWidgets.QComboBox()
+        self.size_cmb.addItems("5")
+        self.size_cmb.addItems(['5', '10', '15', '20', '25'])
+
 
 
     def size_layout(self):
         self.size_layout = QtWidgets.QVBoxLayout()
-        self.size_layout.addWidget(self.y_lbl)
-        self.size_layout.addWidget(self.y_cmb)
+        self.size_layout.addWidget(self.size_lbl)
+        self.size_layout.addWidget(self.size_cmb)
         self.main_layout.addLayout(self.size_layout)
 
 
 
 
     def building_widget(self):
-        self.x_lbl = QtWidgets.QLabel("buildings")
-        self.x_spinbox = QtWidgets.QSpinBox()
-        self.x_spinbox.setValue(1)
-        self.x_lbl.setStyleSheet("font: 20px")
+        self.building_lbl = QtWidgets.QLabel("buildings")
+        self.building_lbl.setStyleSheet("font: bold 20px")
+        self.building_spinbox = QtWidgets.QSpinBox()
+        self.building_spinbox.setValue(1)
+
 
     def building_layout(self):
         self.building_layout = QtWidgets.QVBoxLayout()
-        self.building_layout.addWidget(self.x_lbl)
-        self.building_layout.addWidget(self.x_spinbox)
+        self.building_layout.addWidget(self.building_lbl)
+        self.building_layout.addWidget(self.building_spinbox)
         self.main_layout.addLayout(self.building_layout)
-        #self.setLayout(self.main_layout)
+        self.setLayout(self.main_layout)
 
 
     def office_building_button(self):
         self.office_building_lbl = QtWidgets.QLabel()
-        self.office_building_lbl.setPixmap(QtGui.QPixmap('building_image.png'))
+
         self.office_building_btn = QtWidgets.QPushButton()
-        self.office_building_btn.setIcon(QtGui.QIcon("building_image.png"))
-        self.office_building_btn.setIconSize(QtCore.QSize(32, 32))
+        self.office_building_btn.setIcon(QtGui.QIcon("D:\\Projects\\toolsdev_assignment3B\\src\\building_image.png"))
+        self.office_building_btn.setIconSize(QtCore.QSize(128, 128))
 
     def office_building_lay(self):
-        self.office_lay = QtWidgets.QVBoxLayout()
-        self.office_lay.addWidget(self.office_building_lbl)
+        self.office_lay = QtWidgets.QHBoxLayout()
         self.office_lay.addWidget(self.office_building_btn)
         self.main_layout.addLayout(self.office_lay)
 
@@ -93,17 +97,20 @@ class low_poly_city_ui(QtWidgets.QDialog):
 
     def house_button(self):
         self.house_lbl = QtWidgets.QLabel()
-        self.house_lbl.setPixmap(QtGui.QPixmap("house_image.png"))
         self.house_btn = QtWidgets.QPushButton()
-        self.house_btn.setIcon(QtGui.QIcon("house_image.png"))
-        self.house_btn.setIconSize(QtCore.QSize(32, 32))
+        self.house_btn.setIcon(QtGui.QIcon("D:\\Projects\\toolsdev_assignment3B\\src\\house_image.png"))
+        self.house_btn.setIconSize(QtCore.QSize(128, 128))
 
     def house_lay(self):
-        self.house_buttons_lay = QtWidgets.QVBoxLayout()
-        self.house_buttons_lay.addWidget(self.house_lbl)
+        self.house_buttons_lay = QtWidgets.QHBoxLayout()
         self.house_buttons_lay.addWidget(self.house_btn)
         self.main_layout.addLayout(self.house_buttons_lay)
 
+
+
+    def bottom_buttons(self):
+        self.house_lay()
+        self.office_building_lay()
 
 
 
@@ -113,15 +120,21 @@ class low_poly_city_ui(QtWidgets.QDialog):
         self.main_layout.addWidget(self.title_lbl)
         self.building_layout()
         self.size_layout()
-        self.house_lay()
-        self.office_building_lay()
+        self.bottom_buttons()
 
 
+    @QtCore.Slot()
+    def populate_ui(self):
+        self.scene.foundation = self.house_btn
+        self.scene.roof_2 = self.house_btn
+        self.scene.door_2 = self.house_btn
 
 
+    @QtCore.Slot()
     def create_connections(self):
-        self.y_cmb.currentIndexChanged.connect(self.update_connections)
 
-    def update_connections(self):
-        self.y_lbl.setText(self.y_cmb.currentText())
+        self.house_btn.clicked.connect(self.populate_ui)
+
+
+
 
