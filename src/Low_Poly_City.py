@@ -50,7 +50,7 @@ class low_poly_city_ui(QtWidgets.QDialog):
 
     def size_widget(self):
         self.size_lbl = QtWidgets.QLabel("size")
-        self.size_lbl.setStyleSheet("font: bold 20 px")
+        self.size_lbl.setStyleSheet("font: bold 20px")
         self.size_cmb = QtWidgets.QComboBox()
         self.size_cmb.addItems("5")
         self.size_cmb.addItems(['5', '10', '15', '20', '25'])
