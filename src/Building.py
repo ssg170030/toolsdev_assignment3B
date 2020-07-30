@@ -14,16 +14,22 @@ class PolyBuilding(object):
         self.windows_1 = pmc.polyCube()
         self.door_1 = pmc.polyCube()
 
-        xform = building_1[1]
-        xform.translate.set(0)
-        xform = windows_1[1]
-        xform.translateY.set(5)
-        xform = door_1[1]
-        xform.translateY.set(1.0)
+        self.var = building_1[1]
+        self.var.translate.set(0)
+        self.var_2 = windows_1[1]
+        self.var_2.translateY.set(5)
+        self.var_3 = door_1[1]
+        self.var_3.set(1.0)
 
-        shape = xform.getShape()
+        shape = self.var.getShape()
         shape.longName()
         shape.name()
         shape.numEdges()
         shape.numVertices()
-        xform.translateY.get()
+        self.var.translateY.get()
+
+    @property
+    def __getitem__(self, item):
+        self.var = self.bricks
+        self.var_2 = self.windows_1
+        self.var_3 = self.door_1

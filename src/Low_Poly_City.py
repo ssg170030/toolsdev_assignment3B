@@ -1,7 +1,5 @@
 import maya.OpenMayaUI as omui
 from PySide2 import QtWidgets, QtGui, QtCore
-from PySide2.QtWidgets import QPushButton
-
 from shiboken2 import wrapInstance
 
 import House
@@ -29,7 +27,9 @@ class low_poly_city_ui(QtWidgets.QDialog):
         self.display_widgets()
         self.window_layout()
         self.populate_ui()
-        #self.create_connections()
+
+        #self.create_polyHouse()
+        #self.create_polyBuilding()
 
 
 
@@ -126,23 +126,30 @@ class low_poly_city_ui(QtWidgets.QDialog):
         self.size_layout()
         self.bottom_buttons()
 
+    """
+     A connection that executes a house or building button to create the low poly Building 
+     """
+
+    def create_connections(self):
+        self.house_btn.click.connect(self.close)
+
+
+
+    #@QtCore.Slot()
+    def populate_ui(self):
+
+        self.scene.create_procedural_scene = self.house_btn
+        #self.scene.create_procedural_scene = self.house_btn
 
     @QtCore.Slot()
-    def populate_ui(self):
-        self.scene.foundation = self.house_btn
-        self.scene.roof_2 = self.house_btn
-        self.scene.door_2 = self.house_btn
+    def cancel(self):
+        """Quits the dialog box"""
+        self.close()
 
 
-    #def create_connections(self):
-     #   self.scene.create_procedural_scene()
 
 
-    """
-    A connection that executes a house or building button to create the low poly Building 
-    
-    
-    """
+
 
 
 
