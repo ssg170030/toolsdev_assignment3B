@@ -1,5 +1,4 @@
 import sys
-
 import logging
 import pymel.core as pm
 
@@ -15,23 +14,26 @@ class PolyHouse(object):
         self.bricks = foundation
         self.roof = roof_2
         self.door = door_2
-        #self.create_procedural_scene(xPosition, yPosition, zPosition)
-    def create_procedural_scene(self, bricks=1, roof=1, door=1):
-        self.bricks = pm.polyCube()
+
+
+
+    """Creates the house out of Polygons"""
+    @property
+    def create_procedural_scene(self):
+        pass
+    """    self.bricks = pm.polyCube()
         self.roof = pm.polyCone()
         self.door = pm.Cube()
 
-        xform = bricks[1]
+        xform = self.bricks[1]
         xform.translateZ.set(0)
-        xform = roof[1]
+        xform = self.roof[1]
         xform.translateY.set(1.0)
-        xform = door[1]
+        xform = self.door[1]
         shape = xform.getShape()
         shape.longName()
         shape.name()
         shape.numEdges()
         shape.numVertices()
         xform.translateY.get()
-
-
-
+"""

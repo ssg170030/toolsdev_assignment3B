@@ -5,7 +5,7 @@ from PySide2.QtWidgets import QPushButton
 from shiboken2 import wrapInstance
 
 import House
-
+import Building
 
 
 
@@ -21,6 +21,7 @@ class low_poly_city_ui(QtWidgets.QDialog):
     def __init__(self):
         super(low_poly_city_ui, self).__init__(parent=maya_main_window())
         self.scene = House.PolyHouse()
+        self.scene_2 = Building.PolyBuilding()
         self.setWindowTitle("Low Poly Buildings")
         self.resize(600, 300)
         self.setWindowFlags(self.windowFlags() ^
@@ -28,7 +29,7 @@ class low_poly_city_ui(QtWidgets.QDialog):
 
         self.display_widgets()
         self.window_layout()
-        self.create_connections()
+        #self.create_connections()
         self.populate_ui()
 
 
@@ -95,12 +96,14 @@ class low_poly_city_ui(QtWidgets.QDialog):
 
 
 
+    """Button that create a house Geometry once it is press"""
     def house_button(self):
         self.house_lbl = QtWidgets.QLabel()
         self.house_btn = QtWidgets.QPushButton()
         self.house_btn.setIcon(QtGui.QIcon("D:\\Projects\\toolsdev_assignment3B\\src\\house_image.png"))
         self.house_btn.setIconSize(QtCore.QSize(128, 128))
 
+    """Layout for were the house button is placed"""
     def house_lay(self):
         self.house_buttons_lay = QtWidgets.QHBoxLayout()
         self.house_buttons_lay.addWidget(self.house_btn)
@@ -108,13 +111,13 @@ class low_poly_city_ui(QtWidgets.QDialog):
 
 
 
+    """Layouts the house and building buttons"""
     def bottom_buttons(self):
         self.house_lay()
         self.office_building_lay()
 
 
-
-
+    """What the Maya UI will look like as it is layout"""
     def window_layout(self):
         self.main_layout = QtWidgets.QVBoxLayout()
         self.main_layout.addWidget(self.title_lbl)
@@ -130,11 +133,14 @@ class low_poly_city_ui(QtWidgets.QDialog):
         self.scene.door_2 = self.house_btn
 
 
-    @QtCore.Slot()
-    def create_connections(self):
 
-        self.house_btn.clicked.connect(self.populate_ui)
+    """
+    A connection that executes a house or building button to create the low poly Building 
+    
+    
+    """
+    #@QtCore.Slot()
+    #def create_connections(self):
 
-
-
-
+     #   self.house_btn.clicked.connect()
+      #  self.office_building_btn.click.connect()
