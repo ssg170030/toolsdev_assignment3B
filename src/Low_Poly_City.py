@@ -8,10 +8,8 @@ import House
 import Building
 
 
-
+"""Small function to create a window"""
 def maya_main_window():
-    """Return the maya main window widget
-    small function to create a Window from maya"""
     main_window = omui.MQtUtil.mainWindow()
     return wrapInstance(long(main_window), QtWidgets.QWidget)
 
@@ -20,6 +18,7 @@ class low_poly_city_ui(QtWidgets.QDialog):
 
     def __init__(self):
         super(low_poly_city_ui, self).__init__(parent=maya_main_window())
+        """A varible that stores the class of each program"""
         self.scene = House.PolyHouse()
         self.scene_2 = Building.PolyBuilding()
         self.setWindowTitle("Low Poly Buildings")
@@ -29,13 +28,13 @@ class low_poly_city_ui(QtWidgets.QDialog):
 
         self.display_widgets()
         self.window_layout()
-        #self.create_connections()
         self.populate_ui()
+        #self.create_connections()
 
 
 
-        #self.cmd = 'polyCone's
 
+    """a function that compiles all widgets into a single argument"""
     def display_widgets(self):
         self.title_widget()
         self.building_widget()
@@ -43,11 +42,14 @@ class low_poly_city_ui(QtWidgets.QDialog):
         self.house_button()
         self.office_building_button()
 
+
+    """title of the Maya UI"""
     def title_widget(self):
         self.title_lbl = QtWidgets.QLabel("LowPoly Buildings")
         self.title_lbl.setStyleSheet("font: bold 40px")
 
 
+    """Controls the size of the model"""
     def size_widget(self):
         self.size_lbl = QtWidgets.QLabel("size")
         self.size_lbl.setStyleSheet("font: bold 20px")
@@ -83,13 +85,12 @@ class low_poly_city_ui(QtWidgets.QDialog):
 
     def office_building_button(self):
         self.office_building_lbl = QtWidgets.QLabel()
-
         self.office_building_btn = QtWidgets.QPushButton()
         self.office_building_btn.setIcon(QtGui.QIcon("D:\\Projects\\toolsdev_assignment3B\\src\\building_image.png"))
         self.office_building_btn.setIconSize(QtCore.QSize(128, 128))
 
     def office_building_lay(self):
-        self.office_lay = QtWidgets.QHBoxLayout()
+        self.office_lay = QtWidgets.QVBoxLayout()
         self.office_lay.addWidget(self.office_building_btn)
         self.main_layout.addLayout(self.office_lay)
 
@@ -105,7 +106,7 @@ class low_poly_city_ui(QtWidgets.QDialog):
 
     """Layout for were the house button is placed"""
     def house_lay(self):
-        self.house_buttons_lay = QtWidgets.QHBoxLayout()
+        self.house_buttons_lay = QtWidgets.QVBoxLayout()
         self.house_buttons_lay.addWidget(self.house_btn)
         self.main_layout.addLayout(self.house_buttons_lay)
 
@@ -133,14 +134,15 @@ class low_poly_city_ui(QtWidgets.QDialog):
         self.scene.door_2 = self.house_btn
 
 
+    #def create_connections(self):
+     #   self.scene.create_procedural_scene()
+
 
     """
     A connection that executes a house or building button to create the low poly Building 
     
     
     """
-    #@QtCore.Slot()
-    #def create_connections(self):
 
-     #   self.house_btn.clicked.connect()
-      #  self.office_building_btn.click.connect()
+
+

@@ -19,21 +19,21 @@ class PolyHouse(object):
 
     """Creates the house out of Polygons"""
     @property
-    def create_procedural_scene(self):
-        pass
-    """    self.bricks = pm.polyCube()
-        self.roof = pm.polyCone()
-        self.door = pm.Cube()
+    def create_procedural_scene(self, bricks, roof, door):
 
-        xform = self.bricks[1]
+        self.bricks = pm.polyCube()
+        self.roof = pm.polyCone()
+        self.door = pm.polyCube()
+
+
+        xform = bricks[1]
         xform.translateZ.set(0)
-        xform = self.roof[1]
+        xform = roof[1]
         xform.translateY.set(1.0)
-        xform = self.door[1]
+        xform = door[1]
         shape = xform.getShape()
         shape.longName()
         shape.name()
         shape.numEdges()
         shape.numVertices()
         xform.translateY.get()
-"""
