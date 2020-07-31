@@ -1,26 +1,45 @@
-import sys
-import logging
-import pymel.core as pm
+import pymel.core as pmc
 
-log = logging.getLogger(__name__)
-sys.setrecursionlimit(10 * 6)
 
-    #"""arguments are considered to be numbers"""
+
+
+
 
 
 class PolyHouse(object):
 
+    """varibles that will be passed into the Low_Poly_City"""
+    def __init__(self, foundation='', roof='', door=''):
+        self.building_1 = foundation
+        self.windows_1 = roof
+        self.door_1 = door
 
+    """Storing the polygons into a function"""
 
-    """Creates the house out of Polygons"""
     @property
-    def create_procedural_scene(self):
+    def create_procedural_House(self, building_1, roof_1, door_1):
+        self.bricks = pmc.polyCube()
+        self.windows_1 = pmc.polyCube()
+        self.door_1 = pmc.polyCube()
 
+        self.var = building_1[1]
+        self.var.translate.set(0)
+        self.var_2 = roof_1[1]
+        self.var_2.translateY.set(5)
+        self.var_3 = door_1[1]
+        self.var_3.set(1.0)
 
-        value = pm.polyCube(name='House')[0]
+        shape = self.var.getShape()
+        shape.longName()
+        shape.name()
+        shape.numEdges()
+        shape.numVertices()
+        self.var.translateY.get()
 
-        value.translateY.set(0.3)
-
-    @create_procedural_scene.setter
-    def create_procedural_scene(self, value):
-        self._create_procedural_scene = value
+    """items are stores in var to be used define the size and posistion of 
+    each polygon"""
+    @property
+    def __getitem__(self, item):
+        self.var = self.bricks
+        self.var_2 = self.windows_1
+        self.var_3 = self.door_1
