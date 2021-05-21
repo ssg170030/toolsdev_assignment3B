@@ -3,7 +3,7 @@ from PySide2 import QtWidgets, QtGui, QtCore
 from shiboken2 import wrapInstance
 
 import House
-#import Building
+import Building
 
 
 """Small function to create a window"""
